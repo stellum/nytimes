@@ -7,8 +7,10 @@ function SearchInput() {
 
   useEffect(() => {
     const getArticle = async () => {
-      const api = await fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&api-key=gWFMG5lVIXnJzkE3sellELj5mKHcYlgM`)
-      const data = await api.json()
+      const api = await fetch(
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&api-key=${process.env.REACT_APP_API_KEY}`
+      );
+      const data = await api.json();
       await setNews(data.response.docs);
     };
     if (keyword) {
