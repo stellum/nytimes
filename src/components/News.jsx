@@ -44,7 +44,7 @@ const clipCheck = (clipped, _id) => {
 
 function News({ headline, abstract, date, _id, web_url }) {
   const dispatch = useDispatch();
-  const clipped = useSelector((state) => state.addClipReducer.clip);
+  const clipped = useSelector((state) => state.addClip.clip);
 
   const handleAddClip = (date, headline, abstract, _id, web_url) => {
     const payload = {
