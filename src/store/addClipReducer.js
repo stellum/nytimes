@@ -4,31 +4,22 @@ const INITIAL_CLIP = {
 };
 export const addClipReducer = (state = INITIAL_CLIP, action) => {
   const { payload } = action;
-  // console.log('store payload', payload);
   switch (action.type) {
-    case 'addCLIP':
-      const clipItem = state.clip.find(
-        (item) => item.headLine === payload.headLine
-      );
-      if (clipItem) return;
-      else {
-        const newClip = {
-          date: payload.date,
-          headLine: payload.headLine,
-          abstract: payload.abstract,
-          isClip: true,
-        };
-        state.clip.push(newClip);
-      }
+    case 'ADD_CLIP':
+      const newClip = {
+        date: payload.date,
+        headline: payload.headline,
+        abstract: payload.abstract,
+        _id: payload._id,
+        web_url: payload.web_url,
+      };
 
       return {
-        clip: [...state.clip],
+        clip: [...state.clip, newClip],
       };
-    case 'UNCLIP':
+    case 'UN_CLIP':
       return {
-        clip: state.clip.filter(
-          (clipNews) => clipNews.headLine !== payload.headLine
-        ),
+        clip: state.clip.filter((clipNews) => clipNews._id !== payload._id),
       };
 
     default:
