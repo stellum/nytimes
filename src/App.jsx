@@ -1,8 +1,10 @@
 import React from 'react';
-import Home from './pages/Home'
-
+import Home from './pages/Home';
+import Clip from './pages/Clip';
+import Header from './components/Header';
+import { Routes, Route } from 'react-router-dom';
 // 이거 확인하시고 지우시면 됩니다.
-// Styled Component 
+// Styled Component
 // font-family:
 // https://fonts.google.com/noto/specimen/Noto+Sans?query=noto+sans
 // font-size: 14px 기본
@@ -13,11 +15,13 @@ import Home from './pages/Home'
 function App() {
   return (
     <>
-      <div>
-        <Home />
-      </div>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/Clip' element={<Clip />} />
+        <Route path='*' element={<Home />} />
+      </Routes>
     </>
-    
   );
 }
 

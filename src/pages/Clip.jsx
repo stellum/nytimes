@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Clip() {
-  return (
-    <div>Clip</div>
-  )
+  return <div>Clip</div>;
 }
 
-export default Clip
+export default Clip;

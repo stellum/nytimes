@@ -34,8 +34,14 @@ MGS / TEAM6 / searching news mini project
 ## role
 
 - input: 철연 성일
+  - `git flow feature start SearchInput`
 - news list: 영재 효정
+  - `git flow feature start NewsList`
 - clip: 영배 유나
+  - `git flow feature start Clip`
+- 그외
+  - `git flow feature start api`
+  -
 
 ---
 
@@ -72,10 +78,13 @@ Hooks and filters directory? [C:/Users/팀장-OS이름/Documents/dev/starbucks-c
 3. `develop` branch가 생성됐는지 확인하자.
 4. 추가할 기능의 파일을 생성 후 `develop` branch로 `git push -u origin develop` (develop branch로 처음 push하기 때문에 -u를 사용)
 
-5. 팀원이 issue를 처리해서 `pull request`를 보냈을 때 확인하고 파일들을 확인하고 문제되는 코드에 '+' 버튼을 눌러서 comment를 남길 수 있다.
+5. 아래 팀원 순서가 진행 되고 나서 팀원이 issue를 처리해서 `pull request`를 보냈을 때 확인하고 파일들을 확인하고 문제되는 코드에 '+' 버튼을 눌러서 comment를 남길 수 있다.
+
+- issue 확인을 할 때 `Assigness`, `label`, `milestone`, `Projects`를 지정하자
 
 - **이때, `Approve`는 승인이라서 조심하자. `Request change`를 submit하여 팀원에게 코드 수정을 요청한다.**
 - request 페이지에서 `Changes requested` 노란색을 확인하자
+- *팀원*에게 '+'를 눌러서 코드 라인에 피드백을 준다.
 
 6. **팀장은 해당 request에 대한 해결이 끝났으면 빨리 Merge를 해줘야한다. 그렇지 않으면 다른 작업 내용과 섞일 수 있다. 조심하자**
 
@@ -93,7 +102,8 @@ Hooks and filters directory? [C:/Users/팀장-OS이름/Documents/dev/starbucks-c
 
 1. 팀장에 repository를 `fork`한다.
 2. 자신의 권한이 된 해당 repository를 `clone` 한다.
-3. 현재 `main branch`만 있을텐데 `git flow init`을 통해서 `develope branch`를 생성한다.
+3. 팀원은 자신이 해야할 일을 **ISSUE에 생성**해야한다.
+4. 현재 `main branch`만 있을텐데 `git flow init`을 통해서 `develope branch`를 생성한다.
 
 ```
 ➜ git flow init
@@ -128,9 +138,10 @@ Hooks and filters directory? [C:/Users/팀원-OS이름/Documents/dev/starbucks-c
 
 9. **또한, 기능 추가를 완료했으면 반드시 ISSUE에서 체크박스에 체크한다.** 그래야지 다른 팀원들도 확인이 가능하다.
 
-10. Contribue 버튼에 `open pull request` 또는 초록버튼 `Compare & pull request`를 누른다.
+10. **팀원 자신의 repository develop branch에서** Contribue 버튼에 `open pull request` 또는 초록버튼 `Compare & pull request`를 누른다.
 
-- request 보낼 때 **팀원 repository에서 > 팀장 repository로 보내는 것이다. 주의해서 하자! 이때 branch는 'develop'이다! main 아니다! 주의하자**
+- **Compare & pull request를 누르는 순간 팀장의 id/repository가 보일 것이다 이때 아래와 같이 한다.**
+- **중요** request 보낼 때 **팀원 repository에서 > 팀장 repository로 보내는 것이다. 주의해서 하자! 이때 branch는 'develop'이다! main 아니다! 주의하자**
 - title에는 '기능명과 한 일을 간략히 적는다', comment에는 `close #1`이라고 적는다.(해당 issue가 #1 이라면)
 - 이후 `Create pull request`를 누른다.
 
@@ -143,15 +154,21 @@ Hooks and filters directory? [C:/Users/팀원-OS이름/Documents/dev/starbucks-c
 - 먼저 확인했다는 `comment`를 다시 보내준다.
 - 그리고 코드를 수정한다.
   - `git status, git add 파일명, git commit`을 하자. (commit message 잘쓰자)
-  - `git push origin develop`을 하면 그 팀원이 작업했던 내역 아래에 이어서 붙는다.(request 페이지에서)
+  - `git push origin develop`을 하면 **그 팀원이 작업했던 내역 아래**에 이어서 붙는다.(request 페이지에서)
 
-13. `git remote -v`를 해서 upstream이 있는지 확인하자.
+13. **13번 부터는 제3,4의 팀원이 하는 역할이다.**
 
-14. `upstream`이 없다면 제2 팀원, 제3 팀원 모두 `git remote add upstream 팀장주소`를 통해 팀장 것을 `pull`받을 수 있게 설정해야 한다.
+14. `git remote -v`를 해서 upstream이 있는지 확인하자.
+
+15. `upstream`이 없다면 제2 팀원, 제3 팀원 모두 `git remote add upstream 팀장주소`를 통해 팀장 것을 `pull`받을 수 있게 설정해야 한다.
 
 - ex. `https://github.com/youngcodej22/starbucks-clone.git`
 
 15. 자신의 repository를 최신으로 유지 할 수 있게 해야한다. `git pull upstream develop`
+
+16. TIP
+
+- [upstream](https://wikidocs.net/74836)
 
 ## ISSUE 작성 Tip
 

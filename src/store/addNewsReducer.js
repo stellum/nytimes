@@ -3,9 +3,9 @@ const INITIAL_SEARCH_DATA = {
   docs: [],
 };
 
-export const searchReducer = (state = INITIAL_SEARCH_DATA, action) => {
+export const addNewsRedcuer = (state = INITIAL_SEARCH_DATA, action) => {
   switch (action.type) {
-    case 'addNews':
+    case 'ADD_NEWS':
       return {
         docs: [...action.payload],
       };
