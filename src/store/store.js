@@ -17,11 +17,11 @@ const NewsPersistConfig = {
   whitelist: ['news'],
 };
 const addClip = persistReducer(clipPersistConfig, addClipReducer);
-const addNews = persistReducer(NewsPersistConfig, addNewsRedcuer);
+
 const store = createStore(
   combineReducers({
     addClip,
-    addNews,
+    addNewsRedcuer,
   }),
   applyMiddleware(thunk)
 );

@@ -38,13 +38,13 @@ const Button = styled.button`
     transform: scale(0.98);
   }
 `;
+const clipCheck = (clipped, _id) => {
+  return !clipped.some((storeData) => storeData._id === _id);
+};
 
 function News({ headline, abstract, date, _id, web_url }) {
   const dispatch = useDispatch();
-  const clipped = useSelector((state) => state.addClipReducer.clip);
-  const clipCheck = (clipped) => {
-    return !clipped.some((storeData) => storeData._id === _id);
-  };
+  const clipped = useSelector((state) => state.addClip.clip);
 
   const handleAddClip = (date, headline, abstract, _id, web_url) => {
     const payload = {
@@ -75,9 +75,9 @@ function News({ headline, abstract, date, _id, web_url }) {
         onClick={() => {
           handleAddClip(date, headline, abstract, _id, web_url);
         }}
-        contained={clipCheck(clipped)}
+        contained={clipCheck(clipped, _id)}
       >
-        {clipCheck(clipped) ? 'Clip' : 'UnClip'}
+        {clipCheck(clipped, _id) ? 'Clip' : 'UnClip'}
       </Button>
 
       <a

@@ -15,21 +15,10 @@ const Container = styled.div`
     flex-direction: column;
   }
 `;
-function NewsList() {
-  const newsData = useSelector((news) => news.addNewsReducer.docs);
+function NewsList({ news }) {
   return (
     <Container>
-      {/* {data.slice(0, 3).map((item) => {
-        return (
-          <News
-            key={item.id}
-            headLine={item.headLine}
-            abstract={item.abstract}
-            date={item.date}
-          />
-        );
-      })} */}
-      {newsData.map((news) => {
+      {news.map((news) => {
         return (
           <News
             key={news._id}
