@@ -15,10 +15,12 @@ export const addClipReducer = (state = INITIAL_CLIP, action) => {
       };
 
       return {
+        ...state,
         clip: [...state.clip, newClip],
       };
     case 'UN_CLIP':
       return {
+        ...state,
         clip: state.clip.filter((clipNews) => clipNews._id !== payload._id),
       };
 

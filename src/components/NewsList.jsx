@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import News from './News';
-import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   max-width: 1280px;
@@ -10,7 +9,6 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   @media screen and (max-width: 799px) {
-    justify-content: center;
     align-content: center;
     flex-direction: column;
   }

@@ -6,7 +6,7 @@ function Home() {
   const [keyword, setKeyword] = useState('');
   const [news, setNews] = useState([]);
   const API_KEY = process.env.REACT_APP_API_KEY;
-  console.log(API_KEY);
+
   useEffect(() => {
     const getArticle = async () => {
       const api = await fetch(
@@ -18,7 +18,6 @@ function Home() {
     if (keyword) {
       const searchTimeout = setTimeout(getArticle, 500);
       return () => {
-        console.log('clean-up');
         clearTimeout(searchTimeout);
       };
     }
