@@ -2,6 +2,7 @@
 const INITIAL_CLIP = {
   clip: [],
 };
+
 export const addClipReducer = (state = INITIAL_CLIP, action) => {
   const { payload } = action;
   switch (action.type) {

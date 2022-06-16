@@ -1,14 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// functions
+import { clipCheck, dateFunc } from '../functions/functions';
+
 // library
 import styled from 'styled-components';
-import {
-  format,
-  differenceInDays,
-  differenceInHours,
-  parseISO,
-} from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 // CSS
 const Card = styled.div`
@@ -70,22 +68,6 @@ const Abstract = styled.div`
   padding: 40px 0;
   margin-bottom: 20px;
 `;
-// Functions
-const clipCheck = (clipped, _id) => {
-  return !clipped.some((storeData) => storeData._id === _id);
-};
-
-const dateFunc = (pub_date) => {
-  if (Math.abs(differenceInDays(parseISO(pub_date), new Date())) > 0) {
-    return (
-      Math.abs(differenceInDays(parseISO(pub_date), new Date())) + ' 일 전'
-    );
-  } else {
-    return (
-      Math.abs(differenceInHours(parseISO(pub_date), new Date())) + ' 시간 전'
-    );
-  }
-};
 
 function News(props) {
   const dispatch = useDispatch();
