@@ -13,18 +13,18 @@ const Container = styled.div`
     flex-direction: column;
   }
 `;
-function ClipList({ clip }) {
+function ClipList({ clip, clipped }) {
   return (
     <Container>
-      {clip.map((news) => {
+      {clipped.map((clip) => {
         return (
           <News
-            key={news._id}
-            _id={news._id}
-            headline={news.headline.main}
-            abstract={news.abstract}
-            date={news.pub_date}
-            web_url={news.web_url}
+            key={clip._id}
+            _id={clip._id}
+            headline={clip.headline.main}
+            abstract={clip.abstract}
+            date={clip.pub_date}
+            web_url={clip.web_url}
           />
         );
       })}
