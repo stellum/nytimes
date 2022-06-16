@@ -1,7 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
+// library
+import styled from 'styled-components';
+import {
+  format,
+  differenceInDays,
+  differenceInHours,
+  parseISO,
+} from 'date-fns';
+
+// CSS
 const Card = styled.div`
   box-shadow: 1px 0px 4px 2px rgba(0, 0, 0, 0.14);
   padding: 20px;
@@ -9,19 +18,21 @@ const Card = styled.div`
   border-radius: 10px;
   margin-right: 20px;
   margin-bottom: 20px;
-  @media screen and (min-width: 900px) {
-    margin-right: 20px;
-    width: 600px;
+  position: relative;
+  max-width: 600px;
+
+  @media screen and (min-width: 800px) {
+    min-width: 600px;
   }
-  @media screen and (max-width: 899px) {
+  @media screen and (max-width: 799px) {
     margin-right: 0;
     min-width: 424px;
-    max-width: 599px;
   }
 `;
 
 const Button = styled.button`
   margin-top: 10px;
+  margin-right: 5px;
   border: none;
   width: 70px;
   height: 30px;
@@ -30,6 +41,10 @@ const Button = styled.button`
   background-color: ${(props) => (props.contained ? 'white' : 'royalblue')};
   color: ${(props) => (props.contained ? 'royalblue' : 'white')};
   transition: background-color 0.2s;
+  position: absolute;
+  bottom: 20px;
+  right: ${(props) => (props.clip ? '95px' : '20px')};
+
   &:hover {
     background-color: royalblue;
     color: white;
@@ -38,8 +53,37 @@ const Button = styled.button`
     transform: scale(0.98);
   }
 `;
+const TimeDiv = styled.div`
+  font-size: 0.8rem;
+  display: flex;
+  margin-bottom: 20px;
+  .write {
+    font-weight: 500;
+    margin-right: 10px;
+    color: #656565;
+  }
+  .lasttime {
+    color: #7d7d7d;
+  }
+`;
+const Abstract = styled.div`
+  padding: 40px 0;
+`;
+// Functions
 const clipCheck = (clipped, _id) => {
   return !clipped.some((storeData) => storeData._id === _id);
+};
+
+const dateFunc = (pub_date) => {
+  if (Math.abs(differenceInDays(parseISO(pub_date), new Date())) > 0) {
+    return (
+      Math.abs(differenceInDays(parseISO(pub_date), new Date())) + ' 일 전'
+    );
+  } else {
+    return (
+      Math.abs(differenceInHours(parseISO(pub_date), new Date())) + ' 시간 전'
+    );
+  }
 };
 
 function News({ headline, abstract, date, _id, web_url }) {
@@ -48,34 +92,36 @@ function News({ headline, abstract, date, _id, web_url }) {
 
   const handleAddClip = (date, headline, abstract, _id, web_url) => {
     const payload = {
-      date,
+      date: format(parseISO(date), 'yyyy.MM.dd HH:mm'),
       headline,
       abstract,
       _id,
       web_url,
     };
-    if (!clipped.length) {
+    if (!clipped.length || clipCheck(clipped, _id)) {
       dispatch({ type: 'ADD_CLIP', payload });
     } else {
-      if (clipCheck(clipped)) {
-        dispatch({ type: 'ADD_CLIP', payload });
-      } else {
-        dispatch({ type: 'UN_CLIP', payload: { _id } });
-      }
+      dispatch({ type: 'UN_CLIP', payload: { _id } });
     }
   };
 
   return (
     <Card>
       <h2>{headline}</h2>
-      <figure>{date}</figure>
-      <div>{abstract}</div>
+      <TimeDiv>
+        <div className='write'>
+          입력 {format(parseISO(date), 'yyyy.MM.dd HH:mm')}
+        </div>
+        <div className='lasttime'>{dateFunc(date)}</div>
+      </TimeDiv>
+      <Abstract style={{ marginBottom: '20px' }}>{abstract}</Abstract>
       <Button
         type='button'
         onClick={() => {
           handleAddClip(date, headline, abstract, _id, web_url);
         }}
         contained={clipCheck(clipped, _id)}
+        clip='true'
       >
         {clipCheck(clipped, _id) ? 'Clip' : 'UnClip'}
       </Button>
