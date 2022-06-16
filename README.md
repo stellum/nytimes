@@ -1,6 +1,5 @@
 # MGS-Miniproject-React
 
-//
 MGS / TEAM6 / searching news mini project
 
 ## 사용기술
