@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-function SearchInput() {
+function SearchInput({ setKeyword }) {
+  const handleInputChange = (e) => {
+    setKeyword(e.target.value);
+  };
   return (
-    <div>SearchInput</div>
-  )
+    <div>
+      <input
+        type='text'
+        placeholder='검색어를 입력하세요.'
+        onChange={handleInputChange}
+      ></input>
+    </div>
+  );
 }
 
-export default SearchInput
+export default SearchInput;
