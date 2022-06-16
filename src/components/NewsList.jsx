@@ -16,15 +16,15 @@ const Container = styled.div`
 function NewsList({ news }) {
   return (
     <Container>
-      {news.map((news) => {
+      {news.map((newsData) => {
         return (
           <News
-            key={news._id}
-            _id={news._id}
-            headline={news.headline.main}
-            abstract={news.abstract}
-            date={news.pub_date}
-            web_url={news.web_url}
+            key={newsData._id}
+            _id={newsData._id}
+            headline={newsData.headline.main}
+            abstract={newsData.abstract}
+            date={newsData.pub_date}
+            web_url={newsData.web_url}
           />
         );
       })}

@@ -11,11 +11,7 @@ const clipPersistConfig = {
   storage,
   whitelist: ['clip'],
 };
-const NewsPersistConfig = {
-  key: 'news',
-  storage,
-  whitelist: ['news'],
-};
+
 const addClip = persistReducer(clipPersistConfig, addClipReducer);
 
 const store = createStore(

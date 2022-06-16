@@ -68,6 +68,7 @@ const TimeDiv = styled.div`
 `;
 const Abstract = styled.div`
   padding: 40px 0;
+  margin-bottom: 20px;
 `;
 // Functions
 const clipCheck = (clipped, _id) => {
@@ -86,48 +87,45 @@ const dateFunc = (pub_date) => {
   }
 };
 
-function News({ headline, abstract, date, _id, web_url }) {
+function News(props) {
   const dispatch = useDispatch();
   const clipped = useSelector((state) => state.addClip.clip);
 
-  const handleAddClip = (date, headline, abstract, _id, web_url) => {
+  const handleAddClip = (props) => {
     const payload = {
-      date: format(parseISO(date), 'yyyy.MM.dd HH:mm'),
-      headline,
-      abstract,
-      _id,
-      web_url,
+      ...props,
+      date: format(parseISO(props.date), 'yyyy.MM.dd HH:mm'),
     };
-    if (!clipped.length || clipCheck(clipped, _id)) {
+    if (!clipped.length || clipCheck(clipped, props._id)) {
       dispatch({ type: 'ADD_CLIP', payload });
     } else {
-      dispatch({ type: 'UN_CLIP', payload: { _id } });
+      dispatch({ type: 'UN_CLIP', payload });
     }
   };
 
   return (
     <Card>
-      <h2>{headline}</h2>
+      <h2>{props.headline}</h2>
       <TimeDiv>
         <div className='write'>
-          입력 {format(parseISO(date), 'yyyy.MM.dd HH:mm')}
+          입력 {format(parseISO(props.date), 'yyyy.MM.dd HH:mm')}
         </div>
-        <div className='lasttime'>{dateFunc(date)}</div>
+        <div className='lasttime'>{dateFunc(props.date)}</div>
       </TimeDiv>
-      <Abstract style={{ marginBottom: '20px' }}>{abstract}</Abstract>
+      <Abstract>{props.abstract}</Abstract>
       <Button
         type='button'
         onClick={() => {
-          handleAddClip(date, headline, abstract, _id, web_url);
+          handleAddClip(props);
         }}
-        contained={clipCheck(clipped, _id)}
+        contained={clipCheck(clipped, props._id)}
         clip='true'
       >
-        {clipCheck(clipped, _id) ? 'Clip' : 'UnClip'}
+        {clipCheck(clipped, props._id) ? 'Clip' : 'UnClip'}
       </Button>
 
       <a
-        href={web_url}
+        href={props.web_url}
         target='_blank'
         rel='noopener noreferrer'
         title='새창으로 열기'
