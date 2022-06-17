@@ -40,7 +40,6 @@ function SearchInput({ setKeyword }) {
     <Container>
       <Input
         type="search"
-        name="q"
         placeholder="키워드를 입력하세요."
         onChange={handleInputChange}
       />
