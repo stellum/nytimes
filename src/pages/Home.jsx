@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import PageNaming from '../hoc/PageNaming';
 import NewsList from '../components/NewsList';
 import SearchInput from '../components/SearchInput';
 function Home() {
@@ -31,4 +31,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default PageNaming(Home, 'Home');
