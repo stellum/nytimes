@@ -1,26 +1,29 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Container = styled.div`
+color: #8f2b2b;
+`; //임의로 styled Compontent 어떻게 할지 상의
+
+
 function Header() {
-  let navigate = useNavigate();
+
+ let location  = useLocation(); //현재 페이지 위치(url)가져오기
+
+ const button = (<button>
+ {location.pathname === "/Clip"? "홈으로" : "Clip" }
+</button>);
+
+
   return (
-    <div>
+
+    <Container>
       <h2>New York Times</h2>
-      <button
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        Home
-      </button>
-      <button
-        onClick={() => {
-          navigate('/Clip');
-        }}
-      >
-        Clip
-      </button>
-    </div>
-  );
+      {location.pathname === "/Clip"?<Link to="/" rel="noopener noreferrer">{button}</Link> : <Link to="/Clip">{button}</Link> }
+    {/* rel 열기 취약점 보안 */}
+
+    </Container>
+  )
 }
 
-export default Header;
+export default Header
