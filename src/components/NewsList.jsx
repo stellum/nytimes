@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import News from './News';
-import { format, parseISO } from 'date-fns';
+
 const Container = styled.div`
   max-width: 1280px;
   margin: auto;
