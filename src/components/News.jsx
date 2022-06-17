@@ -70,18 +70,15 @@ const Abstract = styled.div`
 `;
 
 function News(props) {
+  // console.log(props);
   const dispatch = useDispatch();
   const clipped = useSelector((state) => state.addClip.clip);
 
   const handleAddClip = (props) => {
-    const payload = {
-      ...props,
-      date: format(parseISO(props.date), 'yyyy.MM.dd HH:mm'),
-    };
     if (!clipped.length || clipCheck(clipped, props._id)) {
-      dispatch({ type: 'ADD_CLIP', payload });
+      dispatch({ type: 'ADD_CLIP', payload: props });
     } else {
-      dispatch({ type: 'UN_CLIP', payload });
+      dispatch({ type: 'UN_CLIP', payload: props });
     }
   };
 
@@ -90,9 +87,9 @@ function News(props) {
       <h2>{props.headline}</h2>
       <TimeDiv>
         <div className='write'>
-          입력 {format(parseISO(props.date), 'yyyy.MM.dd HH:mm')}
+          입력 {format(parseISO(props.pub_date), 'yyyy-MM-dd HH:mm')}
         </div>
-        <div className='lasttime'>{dateFunc(props.date)}</div>
+        <div className='lasttime'>{dateFunc(props.pub_date)}</div>
       </TimeDiv>
       <Abstract>{props.abstract}</Abstract>
       <Button
