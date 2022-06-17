@@ -1,30 +1,22 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { addClipReducer } from './addClipReducer';
 import persistReducer from 'redux-persist/es/persistReducer';
 import persistStore from 'redux-persist/es/persistStore';
 import storage from 'redux-persist/lib/storage';
-import thunk from 'redux-thunk';
-import { addClipReducer } from './addClipReducer';
-import { addNewsRedcuer } from './addNewsReducer';
 
-const clipPersistConfig = {
-  key: 'clip',
+const persistConfig = {
+  key: 'root',
   storage,
-  whitelist: ['clip'],
+  whitelist: ['addClip'],
 };
-const NewsPersistConfig = {
-  key: 'news',
-  storage,
-  whitelist: ['news'],
-};
-const addClip = persistReducer(clipPersistConfig, addClipReducer);
 
-const store = createStore(
-  combineReducers({
-    addClip,
-    addNewsRedcuer,
-  }),
-  applyMiddleware(thunk)
-);
+const rootReducer = combineReducers({
+  addClip: addClipReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer, applyMiddleware(thunk));
 
 export default store;
 
