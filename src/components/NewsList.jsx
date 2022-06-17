@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import News from './News';
 
 const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1780px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +14,7 @@ const Container = styled.div`
   }
 `;
 function NewsList({ news }) {
+  // console.log(news);
   return (
     <Container>
       {news.map((newsData) => {
@@ -25,6 +26,8 @@ function NewsList({ news }) {
             abstract={newsData.abstract}
             pub_date={newsData.pub_date}
             web_url={newsData.web_url}
+            multimedia={newsData.multimedia[0]?.url}
+            news_desk={newsData.news_desk}
           />
         );
       })}

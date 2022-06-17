@@ -17,10 +17,11 @@ const Card = styled.div`
   margin-right: 20px;
   margin-bottom: 20px;
   position: relative;
-  max-width: 600px;
+  max-width:900px;
+  display: flex;
 
   @media screen and (min-width: 800px) {
-    min-width: 600px;
+    min-width: 900px;
   }
   @media screen and (max-width: 799px) {
     margin-right: 0;
@@ -41,7 +42,7 @@ const Button = styled.button`
   transition: background-color 0.2s;
   position: absolute;
   bottom: 20px;
-  right: ${(props) => (props.clip ? '95px' : '20px')};
+  left: ${(props) => (props.clip ? '95px' : '20px')};
 
   &:hover {
     background-color: royalblue;
@@ -54,7 +55,9 @@ const Button = styled.button`
 const TimeDiv = styled.div`
   font-size: 0.8rem;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  position: absolute;
+  bottom: 20px;
   .write {
     font-weight: 500;
     margin-right: 10px;
@@ -67,7 +70,30 @@ const TimeDiv = styled.div`
 const Abstract = styled.div`
   padding: 40px 0;
   margin-bottom: 20px;
+  width: 450px;
 `;
+
+const Image = styled.div`
+  width: 500px;
+  height: 250px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+  
+  .thumbnail {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    /* height: 100%; */
+    text-align: center;
+  }
+`
+const Text = styled.div`
+  width: 600px;
+  height: 300px;
+`
 
 function News(props) {
   // console.log(props);
@@ -84,14 +110,16 @@ function News(props) {
 
   return (
     <Card>
+      <Text>
+      <div>{props.news_desk}</div>
       <h2>{props.headline}</h2>
+      <Abstract>{props.abstract}</Abstract>
       <TimeDiv>
         <div className='write'>
           입력 {format(parseISO(props.pub_date), 'yyyy-MM-dd HH:mm')}
         </div>
         <div className='lasttime'>{dateFunc(props.pub_date)}</div>
       </TimeDiv>
-      <Abstract>{props.abstract}</Abstract>
       <Button
         type='button'
         onClick={() => {
@@ -111,6 +139,14 @@ function News(props) {
       >
         <Button contained={true}>Link</Button>
       </a>
+      </Text>
+      <Image>
+        <img className='thumbnail' src={
+          props.multimedia  
+          ? `https://www.nytimes.com/${props.multimedia}`
+        : "https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg"
+        } />
+      </Image>
     </Card>
   );
 }
