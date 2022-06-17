@@ -1,14 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// functions
+import { clipCheck, dateFunc } from '../functions/functions';
+
 // library
 import styled from 'styled-components';
-import {
-  format,
-  differenceInDays,
-  differenceInHours,
-  parseISO,
-} from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 // CSS
 const Card = styled.div`
@@ -68,66 +66,45 @@ const TimeDiv = styled.div`
 `;
 const Abstract = styled.div`
   padding: 40px 0;
+  margin-bottom: 20px;
 `;
-// Functions
-const clipCheck = (clipped, _id) => {
-  return !clipped.some((storeData) => storeData._id === _id);
-};
 
-const dateFunc = (pub_date) => {
-  if (Math.abs(differenceInDays(parseISO(pub_date), new Date())) > 0) {
-    return (
-      Math.abs(differenceInDays(parseISO(pub_date), new Date())) + ' 일 전'
-    );
-  } else {
-    return (
-      Math.abs(differenceInHours(parseISO(pub_date), new Date())) + ' 시간 전'
-    );
-  }
-};
-
-function News({ headline, abstract, date, _id, web_url }) {
+function News(props) {
+  // console.log(props);
   const dispatch = useDispatch();
   const clipped = useSelector((state) => state.addClip.clip);
 
-  const handleAddClip = (date, headline, abstract, _id, web_url) => {
-    const payload = {
-      date: format(parseISO(date), 'yyyy.MM.dd HH:mm'),
-      headline,
-      abstract,
-      _id,
-      web_url,
-    };
-    if (!clipped.length || clipCheck(clipped, _id)) {
-      dispatch({ type: 'ADD_CLIP', payload });
+  const handleAddClip = (props) => {
+    if (!clipped.length || clipCheck(clipped, props._id)) {
+      dispatch({ type: 'ADD_CLIP', payload: props });
     } else {
-      dispatch({ type: 'UN_CLIP', payload: { _id } });
+      dispatch({ type: 'UN_CLIP', payload: props });
     }
   };
 
   return (
     <Card>
-      <h2>{headline}</h2>
+      <h2>{props.headline}</h2>
       <TimeDiv>
         <div className='write'>
-          입력 {format(parseISO(date), 'yyyy.MM.dd HH:mm')}
+          입력 {format(parseISO(props.pub_date), 'yyyy-MM-dd HH:mm')}
         </div>
-        <div className='lasttime'>{dateFunc(date)}</div>
+        <div className='lasttime'>{dateFunc(props.pub_date)}</div>
       </TimeDiv>
-      <Abstract style={{ marginBottom: '20px' }}>{abstract}</Abstract>
+      <Abstract>{props.abstract}</Abstract>
       <Button
         type='button'
         onClick={() => {
-          handleAddClip(date, headline, abstract, _id, web_url);
+          handleAddClip(props);
         }}
-        contained={clipCheck(clipped, _id)}
+        contained={clipCheck(clipped, props._id)}
         clip='true'
       >
-        {clipCheck(clipped, _id) ? 'Clip' : 'UnClip'}
+        {clipCheck(clipped, props._id) ? 'Clip' : 'UnClip'}
       </Button>
 
       <a
-        href={web_url}
+        href={props.web_url}
         target='_blank'
         rel='noopener noreferrer'
         title='새창으로 열기'
