@@ -12,4 +12,5 @@ function Clip() {
     </>
   );
 }
+
 export default PageNaming(Clip, "Clip");

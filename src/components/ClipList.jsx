@@ -13,6 +13,7 @@ const Container = styled.div`
     flex-direction: column;
   }
 `;
+
 function ClipList({ clip }) {
   return (
     <Container>
