@@ -8,13 +8,15 @@ color: #8f2b2b;
 function Header() {
  let location  = useLocation(); //현재 페이지 위치(url)가져오기
  const button = (<button>
- {location.pathname === "/Clip"? "홈으로" : "Clip" }
+  {location.pathname === "/Clip"? "Home" : "Clip" }
 </button>);
 
   return (
     <Container>
       <h2>New York Times</h2>
-      {location.pathname === "/Clip"?<Link to="/" rel="noopener noreferrer">{button}</Link> : <Link to="/Clip">{button}</Link> }
+      { location.pathname === "/Clip" ? 
+      <Link to="/" rel="noopener noreferrer">{button}</Link> 
+      : <Link to="/Clip">{button}</Link> }
     {/* rel 열기 취약점 보안 */}
     </Container>
   )
