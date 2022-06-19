@@ -18,6 +18,7 @@ const Input = styled.input`
   font-size: 30px;
   padding: 10px 5px;
   margin-bottom: 20px;
+  margin-top: 40px;
 
   // focus 상태
   &:focus {
