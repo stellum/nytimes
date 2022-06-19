@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import ClipList from "../components/ClipList";
 import PageNaming from "../hoc/PageNaming";
 
