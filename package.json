@@ -50,12 +50,6 @@
         "always"
       ],
       "react/prop-types": "off",
-      "camelcase": [
-        "error",
-        {
-          "properties": "always"
-        }
-      ],
       "curly": ["error", "all"],
       "eqeqeq": ["error", "always"]
     }
