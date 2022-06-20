@@ -55,9 +55,6 @@ const Button = styled.button`
 const TimeDiv = styled.div`
   font-size: 0.8rem;
   display: flex;
-  margin-bottom: 50px;
-  position: absolute;
-  bottom: 20px;
   .write {
     font-weight: 500;
     margin-right: 10px;
@@ -111,13 +108,13 @@ function News(props) {
       <Text>
         <div>{props.news_desk}</div>
         <h2>{props.headline}</h2>
-        <Abstract>{props.abstract}</Abstract>
         <TimeDiv>
           <div className="write">
             입력 {format(parseISO(props.pub_date), "yyyy-MM-dd HH:mm")}
           </div>
           <div className="lasttime">{dateFunc(props.pub_date)}</div>
         </TimeDiv>
+        <Abstract>{props.abstract}</Abstract>
         <Button
           type="button"
           onClick={() => {

@@ -14,6 +14,7 @@ const Container = styled.div`
   }
 `;
 function NewsList({ news }) {
+  // console.log(news);
   return (
     <Container>
       {news.map((newsData) => {
