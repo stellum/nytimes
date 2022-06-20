@@ -19,13 +19,13 @@ function Header() {
 
   return (
     <Container>
-      <Logo src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/2560px-NewYorkTimes.svg.png'></Logo>
+      <Logo src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/2560px-NewYorkTimes.svg.png"></Logo>
       {location.pathname === "/Clip" ? (
-        <Link to='/' rel='noopener noreferrer'>
+        <Link to="/" rel="noopener noreferrer">
           {button}
         </Link>
       ) : (
-        <Link to='/Clip'>{button}</Link>
+        <Link to="/Clip">{button}</Link>
       )}
       {/* rel 열기 취약점 보안 */}
     </Container>

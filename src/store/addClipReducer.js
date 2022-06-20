@@ -6,18 +6,18 @@ const INITIAL_CLIP = {
 export const addClipReducer = (state = INITIAL_CLIP, action) => {
   const { payload } = action;
   switch (action.type) {
-    case 'ADD_CLIP':
-      return {
-        ...state,
-        clip: [...state.clip, payload],
-      };
-    case 'UN_CLIP':
-      return {
-        ...state,
-        clip: state.clip.filter((clipNews) => clipNews._id !== payload._id),
-      };
+  case "ADD_CLIP":
+    return {
+      ...state,
+      clip: [...state.clip, payload],
+    };
+  case "UN_CLIP":
+    return {
+      ...state,
+      clip: state.clip.filter((clipNews) => clipNews._id !== payload._id),
+    };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 };

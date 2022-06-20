@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-const PageNaming = (Component, title = 'NYT') => {
+const PageNaming = (Component, title = "NYT") => {
   function PageNaming(props) {
     useEffect(() => {
       document.title = title;
