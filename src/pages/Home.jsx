@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import PageNaming from '../hoc/PageNaming';
-import NewsList from '../components/NewsList';
-import SearchInput from '../components/SearchInput';
+import { useState, useEffect } from "react";
+import PageNaming from "../hoc/PageNaming";
+import NewsList from "../components/NewsList";
+import SearchInput from "../components/SearchInput";
 function Home() {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const [news, setNews] = useState([]);
   const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -20,6 +20,8 @@ function Home() {
       return () => {
         clearTimeout(searchTimeout);
       };
+    } else {
+      setNews([]);
     }
   }, [keyword]);
 
@@ -31,4 +33,4 @@ function Home() {
   );
 }
 
-export default PageNaming(Home, 'Home');
+export default PageNaming(Home, "Home");
