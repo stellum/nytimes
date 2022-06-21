@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  min-width: 60vw;
+  max-width: 60vw;
   display: flex;
   justify-content: flex-start;
 `;
@@ -30,24 +30,34 @@ const Button = styled.button`
   }
 `;
 
-const History = ({ inputFocus }) => {
-  // let history = JSON.parse(localStorage.getItem("history"));
+const List = styled.li`
+  list-style-type: none;
 
-  let history = ["gold", "korea", "web"];
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
-  const historyRemove = localStorage.removeItem("history");
+const History = (inputFoucs) => {
+  let history = JSON.parse(localStorage.getItem("history"));
 
-  if (inputFocus) {
+  const historyRemove = () => {
+    localStorage.removeItem("history");
+    history = JSON.parse(localStorage.getItem("history"));
+  };
+
+  if (history) {
     return (
       <Container>
         <Header>
           <Title>최근 검색어</Title>
           <Button onClick={historyRemove}>기록 삭제</Button>
         </Header>
-        {history.map((keyword) => {
+        {history.map((keyword, index) => {
           return (
             <ul>
-              <li>{keyword}</li>
+              <List key={index}>✔{keyword}</List>
             </ul>
           );
         })}
@@ -57,3 +67,11 @@ const History = ({ inputFocus }) => {
 };
 
 export default History;
+
+// {history.map((keyword, index) => {
+//   return (
+//     <ul>
+//       <List key={index}>{keyword}</List>
+//     </ul>
+//   )
+// })}
