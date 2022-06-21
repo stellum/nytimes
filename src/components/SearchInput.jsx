@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import History from "./History";
 
 const Container = styled.div`
   max-width: 100vw;
@@ -28,23 +29,31 @@ const Input = styled.input`
   }
 `;
 
-const History = styled.div`
-  min-width: 60vw;
-  font-size: 16px;
-`;
-
 function SearchInput({ setKeyword }) {
+  const [inputFocus, setInputFocus] = useState(false);
+
   const handleInputChange = (e) => {
     setKeyword(e.target.value);
   };
+
+  const handleFocus = () => {
+    setInputFocus(true);
+  };
+
+  const handleFocusOut = () => {
+    setInputFocus(false);
+  };
+
   return (
     <Container>
       <Input
         type="search"
         placeholder="키워드를 입력하세요."
         onChange={handleInputChange}
+        onFocus={handleFocus}
+        onBlur={handleFocusOut}
       />
-      <History>Keyword History</History>
+      <History inputFocus={inputFocus} />
     </Container>
   );
 }
@@ -52,11 +61,5 @@ function SearchInput({ setKeyword }) {
 export default SearchInput;
 
 // checklist
-// 1. input을 입력했다가 다시 모두 지우면 검색 결과를 다시 없얘야 할 듯
-// 2. input foucs 되었을 때 좀 괜찮아 보이게 스타일링해야 함
-
-// 4. useEffect dependency에서 API KEY 부분 고민할 것
-
-// dropdown의 현재 문제점
-// 1. 지금 드랍다운은 내가 지정한 history 값이 아니라 그냥 브라우저에 해당하는 값 가져옴
-// 2. 현재는 focus했을 때 뜨는 게 아니라 focus 되어 있어도 값을 입력하면 드랍다운은 날라감
+// 1. focus 상태 out되었을때 처리 필요
+// 2. localStorage 함수 저장 함수 fix
