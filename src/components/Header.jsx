@@ -1,9 +1,22 @@
+import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled.div`
-  color: #8f2b2b;
-`; //임의로 styled Compontent 어떻게 할지 상의
+const Button = styled.button`
+  border: none;
+  background-color: #555555;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  opacity: 0.6;
+  &:hover {
+      opacity: 1;
+  }
+`; 
 
 const Logo = styled.img`
   width: 15%;
@@ -12,13 +25,13 @@ const Logo = styled.img`
 `;
 
 function Header() {
-  let location = useLocation(); //현재 페이지 위치(url)가져오기
+  let location = useLocation(); 
   const button = (
-    <button>{location.pathname === "/Clip" ? "Home" : "Clip"}</button>
+    <Button>{location.pathname === "/Clip" ? "Home" : "Clip"}</Button>
   );
 
   return (
-    <Container>
+    <>
       <Logo src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/2560px-NewYorkTimes.svg.png"></Logo>
       {location.pathname === "/Clip" ? (
         <Link to="/" rel="noopener noreferrer">
@@ -27,8 +40,7 @@ function Header() {
       ) : (
         <Link to="/Clip">{button}</Link>
       )}
-      {/* rel 열기 취약점 보안 */}
-    </Container>
+    </>
   );
 }
 
