@@ -22,6 +22,7 @@ function Home() {
       };
     } else {
       setNews([]);
+      console.log(news);
     }
   }, [keyword]);
 
