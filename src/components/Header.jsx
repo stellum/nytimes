@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
- position: relative;
+  position: relative;
 `;
 
 const Button = styled.button`
@@ -22,9 +22,9 @@ const Button = styled.button`
   right: 5%;
   top: 10%;
   &:hover {
-      opacity: 1;
+    opacity: 1;
   }
-`; 
+`;
 
 const Logo = styled.img`
   width: 15%;
@@ -33,7 +33,7 @@ const Logo = styled.img`
 `;
 
 function Header() {
-  let location = useLocation(); 
+  let location = useLocation();
   const button = (
     <Button>{location.pathname === "/Clip" ? "Home" : "Clip"}</Button>
   );
