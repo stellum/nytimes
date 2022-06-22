@@ -2,6 +2,10 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
 
+const Container = styled.div`
+ position: relative;
+`;
+
 const Button = styled.button`
   border: none;
   background-color: #555555;
@@ -13,6 +17,10 @@ const Button = styled.button`
   font-size: 16px;
   border-radius: 12px;
   opacity: 0.6;
+  position: absolute;
+  cursor: pointer;
+  right: 5%;
+  top: 10%;
   &:hover {
       opacity: 1;
   }
@@ -31,7 +39,7 @@ function Header() {
   );
 
   return (
-    <>
+    <Container>
       <Logo src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/2560px-NewYorkTimes.svg.png"></Logo>
       {location.pathname === "/Clip" ? (
         <Link to="/" rel="noopener noreferrer">
@@ -40,7 +48,7 @@ function Header() {
       ) : (
         <Link to="/Clip">{button}</Link>
       )}
-    </>
+    </Container>
   );
 }
 
