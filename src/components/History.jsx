@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -39,22 +39,30 @@ const List = styled.li`
   }
 `;
 
-const History = (inputFoucs) => {
-  let history = JSON.parse(localStorage.getItem("history"));
+const History = ({ inputFocus, inputRef }) => {
+  const [record, setRecord] = useState(
+    JSON.parse(localStorage.getItem("history")) || []
+  );
 
-  const historyRemove = () => {
+  useEffect(() => {
+    setRecord(JSON.parse(localStorage.getItem("history")));
+  }, [localStorage.getItem("history")]);
+
+  const historyRemove = (e) => {
+    e.preventDefault();
+    inputRef.current.focus();
     localStorage.removeItem("history");
-    history = JSON.parse(localStorage.getItem("history"));
+    setRecord([]);
   };
 
-  if (history) {
+  if (inputFocus && record[0]) {
     return (
       <Container>
         <Header>
           <Title>최근 검색어</Title>
-          <Button onClick={historyRemove}>기록 삭제</Button>
+          <Button onMouseDown={historyRemove}>기록 삭제</Button>
         </Header>
-        {history.map((keyword, index) => {
+        {record.map((keyword, index) => {
           return (
             <ul>
               <List key={index}>✔{keyword}</List>
