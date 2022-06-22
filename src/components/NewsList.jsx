@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import News from './News';
+import React from "react";
+import styled from "styled-components";
+import News from "./News";
 
 const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1780px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -14,17 +14,20 @@ const Container = styled.div`
   }
 `;
 function NewsList({ news }) {
+  // console.log(news);
   return (
     <Container>
-      {news.map((news) => {
+      {news.map((newsData) => {
         return (
           <News
-            key={news._id}
-            _id={news._id}
-            headline={news.headline.main}
-            abstract={news.abstract}
-            date={news.pub_date}
-            web_url={news.web_url}
+            key={newsData._id}
+            _id={newsData._id}
+            headline={newsData.headline.main}
+            abstract={newsData.abstract}
+            pub_date={newsData.pub_date}
+            web_url={newsData.web_url}
+            multimedia={newsData.multimedia[0]?.url}
+            news_desk={newsData.news_desk}
           />
         );
       })}

@@ -1,7 +1,17 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
+import ClipList from "../components/ClipList";
+import PageNaming from "../hoc/PageNaming";
 
 function Clip() {
-  return <div>Clip</div>;
+  const clipped = useSelector((state) => state.addClip.clip);
+  //console.log(clipped);
+  return (
+    <>
+      <h2>cliplist</h2>
+      <ClipList clip={clipped} />
+    </>
+  );
 }
 
-export default Clip;
+export default PageNaming(Clip, "Clip");
