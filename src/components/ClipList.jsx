@@ -28,6 +28,7 @@ function ClipList({ clip }) {
             pub_date={news.pub_date}
             web_url={news.web_url}
             multimedia={news.multimedia}
+            news_desk={news.news_desk}
           />
         );
       })}
