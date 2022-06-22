@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import History from "./History";
 
@@ -32,6 +32,8 @@ const Input = styled.input`
 function SearchInput({ setKeyword }) {
   const [inputFocus, setInputFocus] = useState(false);
 
+  let inputRef = useRef();
+
   const handleInputChange = (e) => {
     setKeyword(e.target.value);
   };
@@ -49,11 +51,12 @@ function SearchInput({ setKeyword }) {
       <Input
         type="search"
         placeholder="키워드를 입력하세요."
+        ref={inputRef}
         onChange={handleInputChange}
         onFocus={handleFocus}
         onBlur={handleFocusOut}
       />
-      <History inputFocus={inputFocus} />
+      <History inputFocus={inputFocus} inputRef={inputRef} />
     </Container>
   );
 }
