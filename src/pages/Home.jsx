@@ -74,7 +74,7 @@ function Home() {
     <div>
       <SearchInput setKeyword={setKeyword} />
       <NewsList news={news} />
-      <FetchMore loading={loading} setPage={setPage} page={page} />
+      <FetchMore loading={loading} setPage={setPage} />
     </div>
   );
 }
