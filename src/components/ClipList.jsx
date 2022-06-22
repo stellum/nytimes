@@ -15,6 +15,7 @@ const Container = styled.div`
 `;
 
 function ClipList({ clip }) {
+  console.log(clip);
   return (
     <Container>
       {clip.map((news) => {
@@ -26,6 +27,11 @@ function ClipList({ clip }) {
             abstract={news.abstract}
             pub_date={news.pub_date}
             web_url={news.web_url}
+            multimedia={news.multimedia}
+<<<<<<< HEAD
+            news_desk={news.news_desk}
+=======
+>>>>>>> 511acd920664709c36a87170a22d565fdd177a9f
           />
         );
       })}
