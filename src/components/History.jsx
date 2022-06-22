@@ -41,21 +41,23 @@ const List = styled.li`
 
 const History = ({ inputFocus, inputRef }) => {
   const [record, setRecord] = useState(
-    JSON.parse(localStorage.getItem("history")) || []
+    JSON.parse(localStorage.getItem("history"))
   );
+
+  let tempRecord = localStorage.getItem("history");
 
   useEffect(() => {
     setRecord(JSON.parse(localStorage.getItem("history")));
-  }, [localStorage.getItem("history")]);
+  }, [tempRecord]);
 
   const historyRemove = (e) => {
     e.preventDefault();
     inputRef.current.focus();
     localStorage.removeItem("history");
-    setRecord([]);
+    setRecord();
   };
 
-  if (inputFocus && record[0]) {
+  if (record && inputFocus) {
     return (
       <Container>
         <Header>
