@@ -26,8 +26,8 @@ function ClipList({ clip }) {
             abstract={news.abstract}
             pub_date={news.pub_date}
             web_url={news.web_url}
-            news_desk={news.news_desk}
             multimedia={news.multimedia}
+            news_desk={news.news_desk}
           />
         );
       })}

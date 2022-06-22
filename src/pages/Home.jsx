@@ -40,7 +40,7 @@ function Home() {
     <div>
       <SearchInput setKeyword={setKeyword} />
       <NewsList news={news} />
-      <FetchMore loading={loading} setPage={setPage} page={page} />
+      <Image setPage={setPage} page={page} loading={loading} />
     </div>
   );
 }
