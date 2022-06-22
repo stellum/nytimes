@@ -61,7 +61,6 @@ function Home() {
   };
   useEffect(() => {
     localStorage.setItem("history", JSON.stringify(history));
-    console.log(history);
   }, [history]);
 
   return (

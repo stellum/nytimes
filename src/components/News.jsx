@@ -88,7 +88,7 @@ const Image = styled.div`
 `;
 const Text = styled.div`
   width: 600px;
-  height: 300px;
+  height: 260px;
 `;
 
 function News(props) {
