@@ -3,7 +3,7 @@ import PageNaming from "../hoc/PageNaming";
 import NewsList from "../components/NewsList";
 import SearchInput from "../components/SearchInput";
 import FetchMore from "../components/FetchMore";
-import { Image } from "../components/image";
+
 function Home() {
   const [keyword, setKeyword] = useState("");
   const [news, setNews] = useState([]);
@@ -40,7 +40,7 @@ function Home() {
     <div>
       <SearchInput setKeyword={setKeyword} />
       <NewsList news={news} />
-      <Image setPage={setPage} page={page} loading={loading} />
+      <FetchMore setPage={setPage} page={page} loading={loading} />
     </div>
   );
 }
