@@ -3,6 +3,7 @@ import PageNaming from "../hoc/PageNaming";
 import NewsList from "../components/NewsList";
 import SearchInput from "../components/SearchInput";
 import FetchMore from "../components/FetchMore";
+
 function Home() {
   const [keyword, setKeyword] = useState("");
   const [news, setNews] = useState([]);
@@ -24,7 +25,39 @@ function Home() {
     setNews([]);
   }, [keyword]);
 
+  const [history, setHistory] = useState(
+    JSON.parse(localStorage.getItem("history")) || []
+  );
+
+  const saveStorage = () => {
+    let storage = JSON.parse(localStorage.getItem("history"));
+
+    const isDuplicate = (item) => item !== keyword;
+
+    if (storage) {
+      if (storage.every(isDuplicate)) {
+        if (storage.length === 5) {
+          storage.pop(4);
+        }
+      } else {
+        return;
+      }
+      setHistory([keyword, ...storage]);
+    } else {
+      setHistory([keyword]);
+    }
+  };
+
   useEffect(() => {
+    const getArticle = async () => {
+      const api = await fetch(
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&api-key=${API_KEY}&sort=newest`
+      );
+      const data = await api.json();
+      setNews(data.response.docs);
+      saveStorage();
+    };
+    
     if (keyword) {
       setLoading(true);
       const searchTimeout = setTimeout(getArticle, 500);
@@ -35,6 +68,15 @@ function Home() {
       setLoading(false);
     }
   }, [keyword, page]);
+      setNews([]);
+    }
+  }, [keyword]);
+
+  useEffect(() => {
+    localStorage.setItem("history", JSON.stringify(history));
+    console.log(history);
+  }, [history]);
+
   return (
     <div>
       <SearchInput setKeyword={setKeyword} />
