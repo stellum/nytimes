@@ -32,7 +32,6 @@ const Card = styled.div`
 const Button = styled.button`
   margin-top: 10px;
   margin-right: 5px;
-  border: none;
   width: 70px;
   height: 30px;
   border-radius: 3px;
@@ -143,6 +142,7 @@ function News(props) {
               ? `https://www.nytimes.com/${props.multimedia}`
               : "https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg"
           }
+          alt={props.headline}
         />
       </Image>
     </Card>
