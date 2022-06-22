@@ -15,7 +15,6 @@ const Container = styled.div`
 `;
 
 function ClipList({ clip }) {
-  console.log(clip);
   return (
     <Container>
       {clip.map((news) => {
