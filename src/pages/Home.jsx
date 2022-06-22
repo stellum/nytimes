@@ -39,7 +39,7 @@ function Home() {
   }, [keyword, page]);
 
   const [history, setHistory] = useState(
-    JSON.parse(localStorage.getItem("history")) || []
+    JSON.parse(localStorage.getItem("history"))
   );
   const saveStorage = () => {
     let storage = JSON.parse(localStorage.getItem("history"));
