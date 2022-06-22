@@ -19,16 +19,28 @@ function Home() {
       .then((data) => {
         setNews((prev) => [...prev, ...data.response.docs]);
         setLoading(false);
+        saveStorage();
       });
   };
   useEffect(() => {
     setNews([]);
   }, [keyword]);
 
+  useEffect(() => {
+    if (keyword) {
+      setLoading(true);
+      const searchTimeout = setTimeout(getArticle, 500);
+      return () => {
+        clearTimeout(searchTimeout);
+      };
+    } else {
+      setLoading(false);
+    }
+  }, [keyword, page]);
+
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem("history")) || []
   );
-
   const saveStorage = () => {
     let storage = JSON.parse(localStorage.getItem("history"));
 
@@ -47,31 +59,6 @@ function Home() {
       setHistory([keyword]);
     }
   };
-
-  useEffect(() => {
-    const getArticle = async () => {
-      const api = await fetch(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&api-key=${API_KEY}&sort=newest`
-      );
-      const data = await api.json();
-      setNews(data.response.docs);
-      saveStorage();
-    };
-    
-    if (keyword) {
-      setLoading(true);
-      const searchTimeout = setTimeout(getArticle, 500);
-      return () => {
-        clearTimeout(searchTimeout);
-      };
-    } else {
-      setLoading(false);
-    }
-  }, [keyword, page]);
-      setNews([]);
-    }
-  }, [keyword]);
-
   useEffect(() => {
     localStorage.setItem("history", JSON.stringify(history));
     console.log(history);
