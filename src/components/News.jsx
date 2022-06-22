@@ -28,10 +28,24 @@ const Card = styled.div`
     min-width: 424px;
   }
 `;
+const H2 = styled.div`
+  width: 440px;
+  font-size: 1.5em;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; // 원하는 라인수
+  -webkit-box-orient: vertical;
+  margin: 16px 0;
+`;
 
 const Button = styled.button`
+  cursor: pointer;
   margin-top: 10px;
   margin-right: 5px;
+  border: none;
   width: 70px;
   height: 30px;
   border-radius: 3px;
@@ -64,9 +78,14 @@ const TimeDiv = styled.div`
   }
 `;
 const Abstract = styled.div`
-  padding: 40px 0;
-  margin-bottom: 20px;
-  width: 450px;
+  margin: 16px 0;
+  width: 440px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; // 원하는 라인수
+  -webkit-box-orient: vertical;
 `;
 
 const Image = styled.div`
@@ -106,7 +125,7 @@ function News(props) {
     <Card>
       <Text>
         <div>{props.news_desk}</div>
-        <h2>{props.headline}</h2>
+        <H2>{props.headline}</H2>
         <TimeDiv>
           <div className="write">
             입력 {format(parseISO(props.pub_date), "yyyy-MM-dd HH:mm")}
@@ -142,7 +161,6 @@ function News(props) {
               ? `https://www.nytimes.com/${props.multimedia}`
               : "https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg"
           }
-          alt={props.headline}
         />
       </Image>
     </Card>
