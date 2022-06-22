@@ -3,7 +3,7 @@ import PageNaming from "../hoc/PageNaming";
 import NewsList from "../components/NewsList";
 import SearchInput from "../components/SearchInput";
 import FetchMore from "../components/FetchMore";
-
+import axios from "axios";
 function Home() {
   const [keyword, setKeyword] = useState("");
   const [news, setNews] = useState([]);
@@ -11,15 +11,22 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const API_KEY = process.env.REACT_APP_API_KEY;
   const getArticle = async () => {
-    setLoading(true);
-    await fetch(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&api-key=${API_KEY}&page=${page}&sort=newest`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setNews((prev) => [...prev, ...data.response.docs]);
+    let cancel;
+    await axios({
+      method: "GET",
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${API_KEY}`,
+      params: { q: keyword, sort: "newest", page },
+      cancelToken: new axios.CancelToken((c) => (cancel = c)),
+    })
+      .then((res) => {
+        setNews((prev) => [...prev, ...res.data.response.docs]);
         setLoading(false);
         saveStorage();
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) {
+          return;
+        }
       });
   };
   useEffect(() => {
@@ -27,14 +34,14 @@ function Home() {
   }, [keyword]);
 
   useEffect(() => {
-    if (keyword) {
-      setLoading(true);
-      const searchTimeout = setTimeout(getArticle, 500);
+    if (keyword && !loading) {
+      const searchTimeout = setTimeout(() => {
+        setLoading(true);
+        getArticle();
+      }, 500);
       return () => {
         clearTimeout(searchTimeout);
       };
-    } else {
-      setLoading(false);
     }
   }, [keyword, page]);
 
