@@ -30,7 +30,7 @@ const FetchMore = ({ loading, setPage }) => {
   });
   useEffect(() => {
     fetchMoreObserver.observe(fetchMoreTrigger.current);
-  }, []);
+  }, [loading]);
   return (
     <>
       <div id="fetchMore" ref={fetchMoreTrigger}>
