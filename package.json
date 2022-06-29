@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint src/**",
-    "lint-fix": "npx eslint --fix src/**"
+    "lint": "eslint src/**",
+    "lint-fix": "eslint --fix src/**"
   },
   "eslintConfig": {
     "extends": [
@@ -50,8 +50,14 @@
         "always"
       ],
       "react/prop-types": "off",
-      "curly": ["error", "all"],
-      "eqeqeq": ["error", "always"]
+      "curly": [
+        "error",
+        "all"
+      ],
+      "eqeqeq": [
+        "error",
+        "always"
+      ]
     }
   },
   "browserslist": {
