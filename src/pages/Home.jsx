@@ -9,6 +9,7 @@ function Home() {
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasmore] = useState(false);
   const API_KEY = process.env.REACT_APP_API_KEY;
   const getArticle = async () => {
     let cancel;
@@ -21,6 +22,7 @@ function Home() {
       .then((res) => {
         setNews((prev) => [...prev, ...res.data.response.docs]);
         setLoading(false);
+        setHasmore(res.data.response.docs.length > 0);
         saveStorage();
       })
       .catch((e) => {
@@ -74,7 +76,7 @@ function Home() {
     <div>
       <SearchInput setKeyword={setKeyword} />
       <NewsList news={news} />
-      <FetchMore loading={loading} setPage={setPage} />
+      <FetchMore loading={loading} setPage={setPage} hasMore={hasMore} />
     </div>
   );
 }

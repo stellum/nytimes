@@ -21,16 +21,21 @@ const Spinner = styled.div`
   border-radius: 50%;
   margin: 0 auto;
 `;
-const FetchMore = ({ loading, setPage }) => {
+const FetchMore = ({ loading, setPage, hasMore }) => {
   const fetchMoreTrigger = useRef();
   const fetchMoreObserver = new IntersectionObserver(([{ isIntersecting }]) => {
-    if (isIntersecting) {
+    if (loading) {
+      return;
+    }
+
+    if (isIntersecting && hasMore) {
       setPage((page) => page + 1);
     }
   });
   useEffect(() => {
     fetchMoreObserver.observe(fetchMoreTrigger.current);
-  }, []);
+  }, [hasMore, loading]);
+
   return (
     <>
       <div id="fetchMore" ref={fetchMoreTrigger}>

@@ -5,7 +5,6 @@ import PageNaming from "../hoc/PageNaming";
 
 function Clip() {
   const clipped = useSelector((state) => state.addClip.clip);
-  //console.log(clipped);
   return (
     <>
       <h2>cliplist</h2>
