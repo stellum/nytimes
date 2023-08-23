@@ -217,9 +217,3 @@ Github 공식 문서에서 issue는 다음과 같이 정의한다.
 - refactor: Refactor user classes
 
 ---
-
-### 참고 자료
-
-- [우영 선생님-cowork with git flow](https://www.youtube.com/watch?v=lUWHNtmos5o)
-- [issue 다루기](https://hbase.tistory.com/211)
-- [Git Commmit Message Style Guide](https://udacity.github.io/git-styleguide/)
