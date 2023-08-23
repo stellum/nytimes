@@ -1,8 +1,8 @@
-# MGS-Miniproject-React
+# New York Times
 
-MGS / TEAM6 / searching news mini project
+뉴욕타임즈 API를 연동한 기사검색 웹 프로젝트
 
-## 사용기술
+## 기술 스택
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
@@ -20,32 +20,24 @@ MGS / TEAM6 / searching news mini project
 
 ## Setting
 
-- CreateReactApp
-- redux
-- react-redux
-- styled-component
-- redux-persist
-- axios
+- Create React App
+- Redux
+- React-redux
+- Styled-component
+- Redux-persist
+- Axios
 
 ## API
 
 - [NYTimes Article Search API](https://developer.nytimes.com/apis)
 
-## role
+## Demo
 
-- input: 철연 성일
-  - `git flow feature start SearchInput`
-- news list: 영재 효정
-  - `git flow feature start NewsList`
-- clip: 영배 유나
-  - `git flow feature start Clip`
-- 그외
-  - `git flow feature start api`
-  -
+![nytdemo](https://github.com/stellum/wanted-pre-onboarding-frontend/assets/57822573/0a31aaae-2c91-4c89-aa15-4ebaf2f627cc)
 
 ---
 
-## Git&Github collaboration
+## Github collaboration
 
 ### pull 명령어를 이용하여 업데이트를 하는 방법
 
